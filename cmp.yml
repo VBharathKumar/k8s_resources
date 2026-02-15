@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmp
+#  namespace: practise
+  labels:
+    env: prod
+data:
+  created: "2026-02-14 19:23"
+  createdby: Bharath
+  purpose: forHELM

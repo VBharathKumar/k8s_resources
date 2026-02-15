@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sv
+#  namespace: practise
+  labels:
+    env: prod
+spec:
+  type: LoadBalancer
+  selector:
+    app: socialmedia_app
+  ports:
+    - port: 8501
+      targetPort: 8501
