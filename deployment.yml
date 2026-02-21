@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp
+  labels:
+    env: prod
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - {key: env, operator: In, values: [prod]}
+  template:
+    metadata:
+      name: tmp
+      labels:
+        env: prod
+    spec:
+      containers:
+        - name: cnt
+          image: avbk/myrepo_bk:socialmedia_app
+          ports:
+            - containerPort: 8501
+          #volumeMounts:
+           # - name: firvol
+            #  mountPath: /usr/app/
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+                 matchExpressions:
+                  - key: owner
+                    operator: In
+                    values:
+                    - Bharath
+      #volumes:
+       # - name: firvol
+        #  emptyDir: {}
